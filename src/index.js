@@ -58,7 +58,14 @@ searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Louisville");
 
-function displayForecast() {
+function getForecast(city) {
+  let apiKey = "eea420o1f218c3ab334b9b3314724t39";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=imperial`;
+  axios(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
+  console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
 
   let days = ["Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
@@ -75,11 +82,12 @@ function displayForecast() {
           <div class="weather-forecast-temperature">
             <strong>15º</strong>
           </div>
-          <div class="weather-forecast-temperature">9º</div>
+          <div class="weather-forecast-temperature">/ 9º</div>
         </div>
       </div>
 `;
   });
   forecastElement.innerHTML = forecastHtml;
 }
-displayForecast();
+
+getForecast("Louisville");
