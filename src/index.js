@@ -18,6 +18,7 @@ function refreshWeather(response) {
   iconElement.innerHTML = `<img
                   class="weather-app-icon"
                   src="${response.data.condition.icon_url}" />`;
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
@@ -89,5 +90,3 @@ function displayForecast(response) {
   });
   forecastElement.innerHTML = forecastHtml;
 }
-
-getForecast("Louisville");
